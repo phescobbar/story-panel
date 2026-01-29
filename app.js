@@ -17,9 +17,34 @@ class StoryLab {
     }
     
     // ===== Storage =====
-    loadStories() {
-        const saved = localStorage.getItem('storylab_stories');
-        this.stories = saved ? JSON.parse(saved) : [];
+    async loadStories() {
+        // 1. Load from LocalStorage (User edits)
+        const localSaved = localStorage.getItem('storylab_stories');
+        let localStories = localSaved ? JSON.parse(localSaved) : [];
+
+        // 2. Try to load from repository (Agent created stories)
+        try {
+            const response = await fetch('stories.json');
+            if (response.ok) {
+                const repoStories = await response.json();
+                // Merge strategies:
+                // If ID exists in local, keep local (user might have edited)
+                // If ID is new, add it
+                const localIds = new Set(localStories.map(s => s.id));
+                const newStories = repoStories.filter(s => !localIds.has(s.id));
+                
+                if (newStories.length > 0) {
+                    localStories = [...newStories, ...localStories];
+                    this.saveStories(); // Sync back to local
+                    this.showToast(`${newStories.length} novas histórias do Alphonse!`, 'info');
+                }
+            }
+        } catch (e) {
+            console.log('No external stories found or offline');
+        }
+
+        this.stories = localStories;
+        this.render();
     }
     
     saveStories() {
