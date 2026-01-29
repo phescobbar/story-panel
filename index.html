@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Lab | Painel de Roteiros</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Ambient Background -->
+        <div class="ambient-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Story<span class="accent">Lab</span></span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-view="dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    Dashboard
+                </button>
+                <button class="nav-btn" data-view="editor">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Editor
+                </button>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-icon" id="exportBtn" title="Exportar dados">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </button>
+                <button class="btn-icon" id="importBtn" title="Importar dados">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <input type="file" id="importFile" accept=".json" style="display: none;">
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Dashboard View -->
+            <section class="view active" id="dashboardView">
+                <div class="view-header">
+                    <div>
+                        <h1>Seus Roteiros</h1>
+                        <p class="subtitle">Gerencie suas histórias para shorts</p>
+                    </div>
+                    <button class="btn-primary" id="newStoryBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Nova História
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalStories">0</span>
+                            <span class="stat-label">Total de Roteiros</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="completedStories">0</span>
+                            <span class="stat-label">Finalizados</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="draftStories">0</span>
+                            <span class="stat-label">Em Rascunho</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="filter-bar">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">Todos</button>
+                        <button class="filter-tab" data-filter="draft">Rascunhos</button>
+                        <button class="filter-tab" data-filter="review">Em Revisão</button>
+                        <button class="filter-tab" data-filter="completed">Finalizados</button>
+                    </div>
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" placeholder="Buscar roteiros..." id="searchInput">
+                    </div>
+                </div>
+
+                <!-- Stories Grid -->
+                <div class="stories-grid" id="storiesGrid">
+                    <!-- Stories will be rendered here -->
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <line x1="9" y1="15" x2="15" y2="15"/>
+                        </svg>
+                    </div>
+                    <h3>Nenhum roteiro ainda</h3>
+                    <p>Crie sua primeira história para começar</p>
+                </div>
+            </section>
+
+            <!-- Editor View -->
+            <section class="view" id="editorView">
+                <div class="editor-container">
+                    <div class="editor-header">
+                        <button class="btn-back" id="backToList">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m15 18-6-6 6-6"/>
+                            </svg>
+                            Voltar
+                        </button>
+                        <div class="editor-actions">
+                            <select class="status-select" id="storyStatus">
+                                <option value="draft">📝 Rascunho</option>
+                                <option value="review">👀 Em Revisão</option>
+                                <option value="completed">✅ Finalizado</option>
+                            </select>
+                            <button class="btn-danger" id="deleteStoryBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"/>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                </svg>
+                            </button>
+                            <button class="btn-primary" id="saveStoryBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                    <polyline points="17 21 17 13 7 13 7 21"/>
+                                    <polyline points="7 3 7 8 15 8"/>
+                                </svg>
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="editor-body">
+                        <div class="editor-main">
+                            <input type="text" class="title-input" id="storyTitle" placeholder="Título da história...">
+                            
+                            <div class="meta-row">
+                                <div class="meta-item">
+                                    <label>Plataforma</label>
+                                    <div class="platform-select">
+                                        <label class="platform-option">
+                                            <input type="checkbox" name="platform" value="youtube">
+                                            <span class="platform-badge youtube">YouTube</span>
+                                        </label>
+                                        <label class="platform-option">
+                                            <input type="checkbox" name="platform" value="tiktok">
+                                            <span class="platform-badge tiktok">TikTok</span>
+                                        </label>
+                                        <label class="platform-option">
+                                            <input type="checkbox" name="platform" value="reels">
+                                            <span class="platform-badge reels">Reels</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="meta-item">
+                                    <label>Duração estimada</label>
+                                    <input type="text" class="duration-input" id="storyDuration" placeholder="ex: 60s">
+                                </div>
+                            </div>
+
+                            <div class="section-block">
+                                <div class="section-header">
+                                    <h3>🎯 Gancho (Hook)</h3>
+                                    <span class="char-count" data-for="hook">0/150</span>
+                                </div>
+                                <textarea id="hookText" placeholder="Os primeiros 3 segundos são cruciais. O que vai prender a atenção?" maxlength="500"></textarea>
+                            </div>
+
+                            <div class="section-block">
+                                <div class="section-header">
+                                    <h3>📖 Roteiro Principal</h3>
+                                    <span class="char-count" data-for="script">0/2000</span>
+                                </div>
+                                <textarea id="scriptText" placeholder="Desenvolva a narrativa aqui. Inclua marcações de cena, diálogos e ações..." class="large"></textarea>
+                            </div>
+
+                            <div class="section-block">
+                                <div class="section-header">
+                                    <h3>🎬 CTA / Fechamento</h3>
+                                    <span class="char-count" data-for="cta">0/200</span>
+                                </div>
+                                <textarea id="ctaText" placeholder="Call-to-action final. Como você quer que o espectador reaja?" maxlength="500"></textarea>
+                            </div>
+
+                            <div class="section-block">
+                                <div class="section-header">
+                                    <h3>📝 Notas</h3>
+                                </div>
+                                <textarea id="notesText" placeholder="Anotações extras, referências, ideias de edição..." class="notes"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="editor-sidebar">
+                            <div class="sidebar-card">
+                                <h4>Informações</h4>
+                                <div class="info-row">
+                                    <span>Criado em</span>
+                                    <span id="createdAt">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span>Atualizado</span>
+                                    <span id="updatedAt">-</span>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-card">
+                                <h4>Tags</h4>
+                                <div class="tags-container" id="tagsContainer">
+                                    <!-- Tags will be rendered here -->
+                                </div>
+                                <div class="tag-input-wrapper">
+                                    <input type="text" id="tagInput" placeholder="Adicionar tag...">
+                                    <button class="btn-add-tag" id="addTagBtn">+</button>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-card tips">
+                                <h4>💡 Dicas</h4>
+                                <ul>
+                                    <li>Hook deve ser impactante nos primeiros 3s</li>
+                                    <li>Mantenha frases curtas e dinâmicas</li>
+                                    <li>Use pausas estratégicas para retenção</li>
+                                    <li>CTA claro: curtir, seguir, comentar</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
