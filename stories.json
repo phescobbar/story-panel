@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "id": "story_heranca_dog",
+        "title": "A Herança do Cachorro 🐶",
+        "status": "draft",
+        "platforms": ["tiktok", "reels", "youtube"],
+        "duration": "45s",
+        "hook": "Meu pai deixou 50 milhões para o cachorro... e uma carta pra mim.",
+        "script": "[CENA: Escritório de advogado luxuoso. Protagonista (Pedro) de terno, ansioso. Advogado sério lendo papel.]\n\nPEDRO (Narração):\nTrabalhei na empresa do meu pai por dez anos. Engoli sapo, fiz hora extra, perdi o aniversário da minha filha.\n\nADVOGADO:\nPara o meu fiel companheiro, Rex... deixo todo o meu patrimônio líquido. Cinquenta milhões de reais.\n\n[CENA: Pedro levanta da cadeira, furioso. O cachorro (Rex) está num canto, abanando o rabo com uma gravata borboleta.]\n\nPEDRO (Narração):\nEu achei que era piada. Mas o advogado continuou.\n\nADVOGADO:\nE para o meu filho Pedro, deixo esta carta.\n\n[CENA: Advogado entrega um envelope simples, meio amassado. Pedro pega com nojo.]\n\nPEDRO (Narração):\nUma carta? Cinquenta milhões pro cachorro que só sabe lamber o próprio rabo, e uma carta pra mim?\n\n[CENA: Pedro rasga a carta em mil pedaços e joga na cara do advogado.]\n\nPEDRO (Gritando/Mudo):\nEu não quero suas palavras! Eu quero o que é meu!\n\n[CENA: Pedro sai batendo a porta. Advogado suspira, abaixa, pega um pedaço do papel rasgado e lê para si mesmo.]\n\nADVOGADO (Lendo o pedaço):\n\"...a senha do cofre na Suíça com os outros 500 milhões está no verso desta folha. O dinheiro do Rex era só pra testar se você aprendeu a não ser ganancioso.\"\n\n[CENA: Advogado olha pro cachorro. Rex late.]\n\nADVOGADO:\nÉ, Rex... parece que você é o homem da casa agora.",
+        "cta": "Você teria lido a carta ou rasgado também? Comenta aí! 👇",
+        "notes": "Fazer o advogado bem inexpressivo. O foco é a explosão do Pedro. Use som de 'rasgo' bem alto no momento da carta.",
+        "tags": ["dinheiro", "vingança", "plot twist", "moral"],
+        "createdAt": "2026-01-29T23:30:00.000Z",
+        "updatedAt": "2026-01-29T23:30:00.000Z"
+    }
+]
